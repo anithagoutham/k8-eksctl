@@ -39,12 +39,12 @@ systemctl enable docker
 usermod -aG docker ec2-user
 VALIDATE $? "Docker installation"
 
-# eksctl
-curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
-tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
-mv /tmp/eksctl /usr/local/bin
-eksctl version
-VALIDATE $? "eksctl installation"
+# # eksctl
+# curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
+# tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
+# mv /tmp/eksctl /usr/local/bin
+# eksctl version
+# VALIDATE $? "eksctl installation"
 
 
 # kubectl
