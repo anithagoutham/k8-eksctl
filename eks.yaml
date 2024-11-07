@@ -10,3 +10,5 @@ managedNodeGroups:
     instanceType: m5.large
     desiredCapacity: 3
     spot: true
+    # vol-0fd2d4a7799581703
+    # kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-1.36"
