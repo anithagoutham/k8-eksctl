@@ -37,10 +37,6 @@ chmod +x ./kubectl
 mv kubectl /usr/local/bin/kubectl
 VALIDATE $? "kubectl installation"
 
-# # kubens
-# git clone https://github.com/ahmetb/kubectx /opt/kubectx
-# ln -s /opt/kubectx/kubens /usr/local/bin/kubens
-# VALIDATE $? "kubens installation"
 
 
 # Helm
