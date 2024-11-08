@@ -30,16 +30,6 @@ else
     echo "You are super user."
 fi
 
-# docker
-yum install -y yum-utils
-yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
-systemctl start docker
-systemctl enable docker
-usermod -aG docker ec2-user
-VALIDATE $? "Docker installation"
-
-
 
 # kubectl
 curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.31.0/2024-09-12/bin/linux/amd64/kubectl
@@ -54,7 +44,22 @@ VALIDATE $? "kubens installation"
 
 
 # Helm
-curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-chmod 700 get_helm.sh
-./get_helm.sh
- VALIDATE $? "helm installation"
+curl -fsSL -o helm.tar.gz https://get.helm.sh/helm-v3.16.2-linux-amd64.tar.gz
+ tar -zxvf helm.tar.gz
+sudo mv linux-amd64/helm /usr/local/bin/helm
+
+# eksctl
+curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
+tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
+mv /tmp/eksctl /usr/local/bin
+eksctl version
+VALIDATE $? "eksctl installation"
+
+# docker
+yum install -y yum-utils
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+systemctl start docker
+systemctl enable docker
+usermod -aG docker ec2-user
+VALIDATE $? "Docker installation"
