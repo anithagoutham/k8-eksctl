@@ -58,7 +58,8 @@ tar -zxvf helm.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin/helm
 
 
-
+# k9s
+curl -sS https://webinstall.dev/k9s | bash
 
 # docker
 yum install -y yum-utils
